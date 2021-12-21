@@ -1,0 +1,25 @@
+<!-- <div [ngStyle]="{backgroundColor: generateBackgroundColor()}"> -->
+<div  [ngClass]="{'is-green': this.pokemons.length > 1,'is-red': this.pokemons.length <= 1}">
+  <!-- <h1 class="display-1" [ngClass]="{'is-white': addButtonClicked}">Pokédex</h1> -->
+  <h1 class="display-1">Pokédex</h1>
+  <h2 class="display-3">My pokémons</h2>
+</div>
+pokemon: {{this.pokemons.length}}
+{{pokemonName}}
+<div>
+  <!-- <input type="text" (input)="pokemonNameChanged($event)"> -->
+  <input type="text" [(ngModel)]="pokemonName">
+</div>
+<div>
+  <!-- <button (click)="toggleButton($event)" [disabled]="buttonDisabled">add pokémon</button> -->
+  <div>
+
+    <span *ngIf="addButtonClicked">Pokémon added ! </span>
+    <span *ngIf="removeButtonClicked">Pokémon was remove ! </span>
+  </div>
+</div>
+<div>
+  <button class="btn btn-primary m-3" (click)="addPokemon()">add pokémon</button>
+  <!-- <button class="btn btn-primary m-3" (click)="removePokemon()" [disabled]="nbCaught <= 0">remove pokémon</button> -->
+</div>
+<app-pokemon-item (removeClick)="removePokemon(i)" [name]="pokemon" *ngFor="let pokemon of pokemons, let i = index"></app-pokemon-item>
